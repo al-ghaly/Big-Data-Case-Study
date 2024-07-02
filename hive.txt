@@ -1,0 +1,18 @@
+CREATE EXTERNAL TABLE IF NOT EXISTS logs_table (
+    eventType STRING,
+    customerId STRING,
+    productId STRING,
+    `timestamp` STRING,
+    metadata MAP<STRING, STRING>,
+    quantity INT,
+    totalAmount DOUBLE,
+    paymentMethod STRING,
+    recommendedProductId STRING,
+    algorithm STRING
+)
+PARTITIONED BY (`date` STRING, `hour` STRING)
+STORED AS PARQUET
+LOCATION '/user/itversity/prj';
+
+
+MSCK REPAIR TABLE logs_table;
